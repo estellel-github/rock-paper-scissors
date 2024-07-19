@@ -1,4 +1,5 @@
 /* General Styles */
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
@@ -6,23 +7,27 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 #main-container {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto auto;
-  gap: 20px;
+  flex-direction: column;
+  gap: 32px;
   width: 90%;
   max-width: 600px;
   background-color: white;
-  padding: 20px;
+  padding: 16px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+#main-container > * + * {
+  margin-top: 20px;  /* Apply margin between children */
+}
+
+#banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: #333;
 }
@@ -41,12 +46,13 @@ h2 {
 }
 
 #choice-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
   gap: 10px;
 }
 
 button {
+  flex: 1;
   padding: 10px;
   font-size: 1.2em;
   border: none;
@@ -56,8 +62,32 @@ button {
 }
 
 button:hover {
-  background-color: #ddd;
   transform: translateY(-2px);
+}
+
+/* Specific button colors */
+#rock-button {
+  background-color: #FFB6C1; /* Pastel Pink */
+}
+
+#rock-button:hover {
+  background-color: #FF9999; /* Slightly darker pastel pink for hover effect */
+}
+
+#paper-button {
+  background-color: #FFDAB9; /* Pastel Orange */
+}
+
+#paper-button:hover {
+  background-color: #FFCBA4; /* Slightly darker pastel orange for hover effect */
+}
+
+#scissors-button {
+  background-color: #ADD8E6; /* Pastel Blue */
+}
+
+#scissors-button:hover {
+  background-color: #87CEEB; /* Slightly darker pastel blue for hover effect */
 }
 
 /* Hide new game button while keeping its space */
@@ -65,11 +95,22 @@ button:hover {
   visibility: hidden;
 }
 
+.display-none {
+  display: none;
+}
+
+#new-game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #new-game-button {
-  width: 100%;
   background-color: #007BFF;
   color: white;
   padding: 15px;
+  max-width: 200px; /* Adjust the max-width as needed */
+  width: 100%; /* Ensure the button maintains its size proportion */
 }
 
 #new-game-button:hover {
@@ -87,13 +128,18 @@ button:disabled:hover {
 }
 
 #results-container {
-  display: grid;
-  grid-template-rows: auto 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   padding: 20px;
   background-color: #f0f8ff;
   border-radius: 10px;
   border: 1px solid #ccc;
+}
+
+#round-number {
+  text-align: center;
+  color: rgb(83, 83, 83);
 }
 
 #scores {
@@ -128,7 +174,6 @@ button:disabled:hover {
     opacity: 1;
     transform: translateY(0);
   }
-
   to {
     opacity: 0;
     transform: translateY(-20px);
@@ -140,7 +185,6 @@ button:disabled:hover {
     opacity: 0;
     transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -220,12 +264,13 @@ button:disabled:hover {
   /* Space above the results text */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Subtle shadow for depth */
-  white-space: pre;
-  /* ALLOW FOR LINE BREAKS https://stackoverflow.com/questions/9980416/how-can-i-insert-new-line-carriage-returns-into-an-element-textcontent */
+  /* white-space: pre; ALLOW FOR LINE BREAKS https://stackoverflow.com/questions/9980416/how-can-i-insert-new-line-carriage-returns-into-an-element-textcontent */
+  max-width: 100%;
 }
 
 #game-history {
   height: 150px;
+  max-width: 100%;
   overflow-y: auto;
 }
 

@@ -1,7 +1,3 @@
-/* Paper beats rock
-Scissors beat paper
-Rock beats scissors */
-
 const choices = ["rock", "paper", "scissors"];
 const MAX_SCORE = 5;
 
@@ -10,11 +6,15 @@ let roundNumber = 0;
 let humanScore = 0;
 let computerScore = 0;
 
+const roundNumberEl = document.querySelector("#round-number");
 const humanScoreEl = document.querySelector("#human-score");
 const computerScoreEl = document.querySelector("#computer-score");
 const resultsTextEl = document.querySelector("#results-text");
 const gameHistoryListEl = document.querySelector("#game-history-list");
+const resultsContainerEl = document.querySelector("#results-container");
+const gameHistoryEl = document.querySelector("#game-history");
 
+const reachScoreHeaderEl = document.querySelector("#reach-score-header");
 const paperButtonEl = document.querySelector("#paper-button");
 const rockButtonEl = document.querySelector("#rock-button");
 const scissorsButtonEl = document.querySelector("#scissors-button");
@@ -35,8 +35,9 @@ function initializeGame() {
   updateScore("computer-score", computerScore);
   updateGameHistory();
   enableButtons();
-  document.getElementById("make-choice-header").classList.remove("hidden");
-  document.getElementById("new-game-button").classList.add("hidden");
+  newGameButtonEl.classList.toggle("display-none");
+  reachScoreHeaderEl.classList.toggle("display-none");
+  roundNumberEl.textContent = "Round 1";
   resultsTextEl.textContent = "A new game has started! Make your choice!";
 }
 
@@ -52,37 +53,36 @@ function updateGameHistory() {
 }
 
 function getComputerChoice() {
-  // (Return random integer between 0 and 2 both included, matching choices array)
-  let computerChoice = Math.floor(Math.random() * 3);
-  return computerChoice;
+  return Math.floor(Math.random() * 3);
 }
 
 function getHumanChoice(playerSelection) {
-  let humanChoice = choices.indexOf(playerSelection);
-  return humanChoice;
+  return choices.indexOf(playerSelection);
 }
 
 function playRound(playerSelection) {
+  if (roundNumber === 0) {
+    gameHistoryEl.classList.toggle("display-none");
+  }
   checkRoundWinner(getHumanChoice(playerSelection), getComputerChoice());
 }
 
 function finishGame() {
   if (humanScore === MAX_SCORE) {
-    resultsTextEl.textContent = `🎉 CONGRATS, YOU WON THIS GAME! 🏆\r\nWell played! `;
+    resultsTextEl.textContent = `🎉 CONGRATS, YOU WON THIS GAME! 🏆 Well played! `;
   } else if (computerScore === MAX_SCORE) {
-    resultsTextEl.textContent = `🤖 SORRY, COMPUTER WON THIS GAME! 🤖\r\nBetter luck next time, human.`;
+    resultsTextEl.textContent = `🤖 SORRY, COMPUTER WON THIS GAME! 🤖 Better luck next time, human.`;
   }
   disableButtons();
-  document.getElementById("new-game-button").classList.remove("hidden");
-  document.getElementById("make-choice-header").classList.add("hidden");
+  newGameButtonEl.classList.toggle("display-none");
+  reachScoreHeaderEl.classList.toggle("display-none");
+  gameHistoryEl.classList.toggle("display-none");
+
 }
 
 function checkRoundWinner(humanChoice, computerChoice) {
-  if (humanScore === 5 || computerScore === 5) {
-    finishGame();
-    return;
-  }
   roundNumber++;
+  roundNumberEl.textContent = `Round ${roundNumber}`;
   let roundWinner;
   if (humanChoice === computerChoice) {
     roundWinner = "No one";
@@ -99,7 +99,11 @@ function checkRoundWinner(humanChoice, computerChoice) {
   }
   updateScore("human-score", humanScore);
   updateScore("computer-score", computerScore);
-  let roundResult = `${roundWinner} winds round ${roundNumber}!`;
+  if (humanScore === 5 || computerScore === 5) {
+    finishGame();
+    return;
+  }
+  let roundResult = `${roundWinner} wins round ${roundNumber}!`;
   resultsTextEl.textContent = `${roundResult}`;
   gameHistory.push(
     `Round ${roundNumber}: Human played ${choices[humanChoice]} - Computer played ${choices[computerChoice]}`
@@ -107,27 +111,17 @@ function checkRoundWinner(humanChoice, computerChoice) {
   updateGameHistory();
 }
 
-// New function to update scores with animation
 function updateScore(elementId, newScore) {
   const element = document.getElementById(elementId);
-  
-  // Add the class to trigger the fade-out effect
   element.classList.add('updating');
-  
-  // Wait for the fade-out effect to complete
   setTimeout(() => {
-    // Update the score
     element.textContent = newScore;
-    
-    // Remove the fade-out class and add the fade-in class
     element.classList.remove('updating');
     element.classList.add('new');
-    
-    // Remove the fade-in class after the animation completes
     setTimeout(() => {
       element.classList.remove('new');
-    }, 500); // Match this duration to the fade-in animation duration
-  }, 500); // Match this duration to the fade-out animation duration
+    }, 500);
+  }, 500);
 }
 
 function disableButtons() {
