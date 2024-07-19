@@ -106,14 +106,16 @@ button:disabled:hover {
   text-align: center;
 }
 
-#human-score-container, #computer-score-container {
+#human-score-container,
+#computer-score-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-#human-score-header, #computer-score-header {
+#human-score-header,
+#computer-score-header {
   font-size: 1em;
   font-weight: bold;
   color: #333;
@@ -122,16 +124,31 @@ button:disabled:hover {
 
 /* Add animation keyframes */
 @keyframes fade-out {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(-20px); }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-#human-score, #computer-score {
+#human-score,
+#computer-score {
   font-size: 2em;
   color: white;
   background-color: #007BFF;
@@ -142,13 +159,16 @@ button:disabled:hover {
   position: relative;
   overflow: hidden;
   line-height: 1em;
-  height: 1em; /* Ensures vertical centering */
+  height: 1em;
+  /* Ensures vertical centering */
   opacity: 1;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-#human-score::before, #computer-score::before,
-#human-score::after, #computer-score::after {
+#human-score::before,
+#computer-score::before,
+#human-score::after,
+#computer-score::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -157,21 +177,25 @@ button:disabled:hover {
   left: 0;
 }
 
-#human-score::before, #computer-score::before {
+#human-score::before,
+#computer-score::before {
   top: -10px;
   border-bottom: 2px solid white;
 }
 
-#human-score::after, #computer-score::after {
+#human-score::after,
+#computer-score::after {
   bottom: -10px;
   border-top: 2px solid white;
 }
 
-#human-score.updating, #computer-score.updating {
+#human-score.updating,
+#computer-score.updating {
   animation: fade-out 0.5s forwards;
 }
 
-#human-score.new, #computer-score.new {
+#human-score.new,
+#computer-score.new {
   animation: fade-in 0.5s forwards;
 }
 
@@ -182,14 +206,22 @@ button:disabled:hover {
   text-align: center;
   font-size: 1.2em;
   color: #333;
-  min-height: 50px; /* Set a minimum height for the results text */
-  background-color: #f9f9f9; /* Light background color */
-  padding: 10px; /* Padding around the text */
-  border: 1px solid #ccc; /* Border to separate it */
-  border-radius: 5px; /* Rounded corners */
-  margin-top: 20px; /* Space above the results text */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  white-space: pre; /* ALLOW FOR LINE BREAKS https://stackoverflow.com/questions/9980416/how-can-i-insert-new-line-carriage-returns-into-an-element-textcontent */
+  min-height: 50px;
+  /* Set a minimum height for the results text */
+  background-color: #f9f9f9;
+  /* Light background color */
+  padding: 10px;
+  /* Padding around the text */
+  border: 1px solid #ccc;
+  /* Border to separate it */
+  border-radius: 5px;
+  /* Rounded corners */
+  margin-top: 20px;
+  /* Space above the results text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  white-space: pre;
+  /* ALLOW FOR LINE BREAKS https://stackoverflow.com/questions/9980416/how-can-i-insert-new-line-carriage-returns-into-an-element-textcontent */
 }
 
 #game-history {
