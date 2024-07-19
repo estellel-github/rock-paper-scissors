@@ -100,6 +100,7 @@ function checkRoundWinner(humanChoice, computerChoice) {
   updateScore("human-score", humanScore);
   updateScore("computer-score", computerScore);
   let roundResult = `${roundWinner} winds round ${roundNumber}!`;
+  resultsTextEl.textContent = `${roundResult}`;
   gameHistory.push(
     `Round ${roundNumber}: Human played ${choices[humanChoice]} - Computer played ${choices[computerChoice]}`
   );
