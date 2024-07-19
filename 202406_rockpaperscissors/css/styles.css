@@ -1,0 +1,232 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#main-container {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  gap: 20px;
+  width: 90%;
+  max-width: 600px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+h2 {
+  margin: 0;
+  color: #555;
+  text-align: center;
+}
+
+#choice-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #ddd;
+  transform: translateY(-2px);
+}
+
+/* Hide new game button while keeping its space */
+.hidden {
+  visibility: hidden;
+}
+
+#new-game-button {
+  width: 100%;
+  background-color: #007BFF;
+  color: white;
+  padding: 15px;
+}
+
+#new-game-button:hover {
+  background-color: #0056b3;
+}
+
+/* Disable hover effects for disabled buttons */
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: initial;
+  transform: none;
+}
+
+#results-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 10px;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+#scores {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+}
+
+#scores div {
+  text-align: center;
+}
+
+#human-score-container, #computer-score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#human-score-header, #computer-score-header {
+  font-size: 1em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Add animation keyframes */
+@keyframes fade-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#human-score, #computer-score {
+  font-size: 2em;
+  color: white;
+  background-color: #007BFF;
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  line-height: 1em;
+  height: 1em; /* Ensures vertical centering */
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#human-score::before, #computer-score::before,
+#human-score::after, #computer-score::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: #007BFF;
+  left: 0;
+}
+
+#human-score::before, #computer-score::before {
+  top: -10px;
+  border-bottom: 2px solid white;
+}
+
+#human-score::after, #computer-score::after {
+  bottom: -10px;
+  border-top: 2px solid white;
+}
+
+#human-score.updating, #computer-score.updating {
+  animation: fade-out 0.5s forwards;
+}
+
+#human-score.new, #computer-score.new {
+  animation: fade-in 0.5s forwards;
+}
+
+#results-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+  min-height: 50px; /* Set a minimum height for the results text */
+  background-color: #f9f9f9; /* Light background color */
+  padding: 10px; /* Padding around the text */
+  border: 1px solid #ccc; /* Border to separate it */
+  border-radius: 5px; /* Rounded corners */
+  margin-top: 20px; /* Space above the results text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  white-space: pre; /* ALLOW FOR LINE BREAKS https://stackoverflow.com/questions/9980416/how-can-i-insert-new-line-carriage-returns-into-an-element-textcontent */
+}
+
+#game-history {
+  height: 150px;
+  overflow-y: auto;
+}
+
+#game-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#game-history-list li {
+  background: #f9f9f9;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  color: #555;
+  border-left: 5px solid #007bff;
+}
+
+@media (max-width: 480px) {
+  button {
+    font-size: 1em;
+  }
+
+  #new-game-button {
+    font-size: 1em;
+  }
+
+  #scores {
+    font-size: 1.2em;
+  }
+
+  #results-text {
+    font-size: 1em;
+  }
+}

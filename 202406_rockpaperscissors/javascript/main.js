@@ -3,50 +3,86 @@ Scissors beat paper
 Rock beats scissors */
 
 const choices = ["rock", "paper", "scissors"];
+const MAX_SCORE = 5;
 
-function getHumanChoice() {
-  let humanInput;
-  let humanChoice;
-
-  while (true) {
-    humanInput = prompt("Please type: rock, paper, or scissors");
-    // No input (empty or canceled), offer prompt again
-    if (humanInput === "" || humanInput === null) {
-      alert(`Please type something!`);
-      continue;
-    }
-    // Valid input: switch to lower case and convert to integer matching "choices" array
-    else if (humanInput !== "" && humanInput !== undefined) {
-      if (humanInput.toLowerCase() === "rock") {
-        humanChoice = 0;
-        break;
-      } else if (humanInput.toLowerCase() === "paper") {
-        humanChoice = 1;
-        break;
-      } else if (humanInput.toLowerCase() === "scissors") {
-        humanChoice = 2;
-        break;
-        // Invalid input, alert and go back to prompt
-      } else {
-        alert(`Please type a valid choice!`);
-      }
-    }
-  }
-  // Return user choice as integer
-  return humanChoice;
-}
-
-function getComputerChoice() {
-  // Return random integer between 0 and 2 both included
-  let computerChoice = Math.floor(Math.random() * 3);
-  // Return integer matching "choices" array
-  return computerChoice;
-}
-
+let gameHistory = [];
+let roundNumber = 0;
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(humanChoice, computerChoice) {
+const humanScoreEl = document.querySelector("#human-score");
+const computerScoreEl = document.querySelector("#computer-score");
+const resultsTextEl = document.querySelector("#results-text");
+const gameHistoryListEl = document.querySelector("#game-history-list");
+
+const paperButtonEl = document.querySelector("#paper-button");
+const rockButtonEl = document.querySelector("#rock-button");
+const scissorsButtonEl = document.querySelector("#scissors-button");
+const newGameButtonEl = document.querySelector("#new-game-button");
+
+[rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button, index) => {
+  button.addEventListener("click", () => playRound(choices[index]));
+});
+
+newGameButtonEl.addEventListener("click", () => initializeGame());
+
+function initializeGame() {
+  gameHistory = [];
+  roundNumber = 0;
+  humanScore = 0;
+  computerScore = 0;
+  updateScore("human-score", humanScore);
+  updateScore("computer-score", computerScore);
+  updateGameHistory();
+  enableButtons();
+  document.getElementById("make-choice-header").classList.remove("hidden");
+  document.getElementById("new-game-button").classList.add("hidden");
+  resultsTextEl.textContent = "A new game has started! Make your choice!";
+}
+
+initializeGame();
+
+function updateGameHistory() {
+  gameHistoryListEl.innerHTML = "";
+  gameHistory.slice().reverse().forEach((entry) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = entry;
+    gameHistoryListEl.appendChild(listItem);
+  });
+}
+
+function getComputerChoice() {
+  // (Return random integer between 0 and 2 both included, matching choices array)
+  let computerChoice = Math.floor(Math.random() * 3);
+  return computerChoice;
+}
+
+function getHumanChoice(playerSelection) {
+  let humanChoice = choices.indexOf(playerSelection);
+  return humanChoice;
+}
+
+function playRound(playerSelection) {
+  checkRoundWinner(getHumanChoice(playerSelection), getComputerChoice());
+}
+
+function finishGame() {
+  if (humanScore === MAX_SCORE) {
+    resultsTextEl.textContent = `🎉 CONGRATS, YOU WON THIS GAME! 🏆\r\nWell played! `;
+  } else if (computerScore === MAX_SCORE) {
+    resultsTextEl.textContent = `🤖 SORRY, COMPUTER WON THIS GAME! 🤖\r\nBetter luck next time, human.`;
+  }
+  disableButtons();
+  document.getElementById("new-game-button").classList.remove("hidden");
+  document.getElementById("make-choice-header").classList.add("hidden");
+}
+
+function checkRoundWinner(humanChoice, computerChoice) {
+  if (humanScore === 5 || computerScore === 5) {
+    finishGame();
+    return;
+  }
+  resultsTextEl.textContent = "";
   let roundWinner;
   if (humanChoice === computerChoice) {
     roundWinner = "No one";
@@ -61,37 +97,47 @@ function playRound(humanChoice, computerChoice) {
     roundWinner = "Computer";
     computerScore += 1;
   }
-  return `Human chose ${choices[humanChoice]} and computer chose ${choices[computerChoice]}.\n
-  ${roundWinner} wins this round!\n
-  .・゜゜・ SCORES ・゜゜・．\n
-  | Human | ${humanScore} | Computer | ${computerScore}`;
+  updateScore("human-score", humanScore);
+  updateScore("computer-score", computerScore);
+  roundNumber++;
+  gameHistory.push(
+    `Round ${roundNumber}: Human played ${choices[humanChoice]} - Computer played ${choices[computerChoice]}`
+  );
+  updateGameHistory();
+  
 }
 
-function endWinner(humanScore, computerScore) {
-  if (humanScore > computerScore) {
-    return "🎉 CONGRATS, YOU WON! You're the rock-paper-scissors champion! 🏆";
-  }
-  else if (computerScore > humanScore) {
-    return "🤖 SORRY, COMPUTER WON! Better luck next time, human."
-  }
-  else {
-    return "🤝 IT WAS A DRAW! Great minds think alike, huh?";
-  }
+// New function to update scores with animation
+function updateScore(elementId, newScore) {
+  const element = document.getElementById(elementId);
+  
+  // Add the class to trigger the fade-out effect
+  element.classList.add('updating');
+  
+  // Wait for the fade-out effect to complete
+  setTimeout(() => {
+    // Update the score
+    element.textContent = newScore;
+    
+    // Remove the fade-out class and add the fade-in class
+    element.classList.remove('updating');
+    element.classList.add('new');
+    
+    // Remove the fade-in class after the animation completes
+    setTimeout(() => {
+      element.classList.remove('new');
+    }, 500); // Match this duration to the fade-in animation duration
+  }, 500); // Match this duration to the fade-out animation duration
 }
 
-function playGame() {
-  for (let i = 1; i < 6; i++) {
-    alert(`Round ${i}! Let's play!`);
-    alert(playRound(getHumanChoice(), getComputerChoice()));
-    if (i === 5) {
-      alert(`That was the last round!\n
-      .・゜゜・ END SCORES ・゜゜・．\n
-      | Human | ${humanScore} | Computer | ${computerScore}`);
-      alert(`.・゜゜・ END RESULT ・゜゜・．\n
-      ${endWinner(humanScore, computerScore)}\n
-      Refresh the page to start another game!`);
-    }
-  }
+function disableButtons() {
+  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach(button => {
+    button.disabled = true;
+  });
 }
 
-playGame();
+function enableButtons() {
+  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach(button => {
+    button.disabled = false;
+  });
+}
