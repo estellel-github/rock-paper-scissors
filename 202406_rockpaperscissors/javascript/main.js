@@ -82,7 +82,7 @@ function checkRoundWinner(humanChoice, computerChoice) {
     finishGame();
     return;
   }
-  resultsTextEl.textContent = "";
+  roundNumber++;
   let roundWinner;
   if (humanChoice === computerChoice) {
     roundWinner = "No one";
@@ -99,12 +99,11 @@ function checkRoundWinner(humanChoice, computerChoice) {
   }
   updateScore("human-score", humanScore);
   updateScore("computer-score", computerScore);
-  roundNumber++;
+  let roundResult = `${roundWinner} winds round ${roundNumber}!`;
   gameHistory.push(
     `Round ${roundNumber}: Human played ${choices[humanChoice]} - Computer played ${choices[computerChoice]}`
   );
   updateGameHistory();
-  
 }
 
 // New function to update scores with animation
