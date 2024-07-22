@@ -12,7 +12,7 @@ const resultsTextEl = document.querySelector("#results-text");
 
 const bannerImgEl = document.querySelector("#banner-img");
 const bannerContainerEl = document.querySelector("#banner-container");
-const gameContainerEl = document.querySelector("#game-container");
+const gameWrapperEl = document.querySelector("#game-wrapper");
 const resultsContainerEl = document.querySelector("#results-container");
 
 const paperButtonEl = document.querySelector("#paper-button");
@@ -42,7 +42,7 @@ function initializeGame() {
   enableButtons();
   bannerImgEl.classList.remove("img-start");
   bannerImgEl.classList.add("img-play");
-  gameContainerEl.classList.remove("display-none");
+  gameWrapperEl.classList.remove("display-none");
   newGameWrapperEl.classList.toggle("display-none");
   resultsTextEl.textContent =
     "A new game has started!\nReach a score of 5 to win!\nMake your choice!";
