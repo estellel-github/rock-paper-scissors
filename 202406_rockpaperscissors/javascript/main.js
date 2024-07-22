@@ -11,10 +11,12 @@ const humanScoreEl = document.querySelector("#human-score");
 const computerScoreEl = document.querySelector("#computer-score");
 const resultsTextEl = document.querySelector("#results-text");
 const gameHistoryListEl = document.querySelector("#game-history-list");
+
+const bannerContainerEl = document.querySelector("#banner-container");
+const gameContainerEl = document.querySelector("#game-container");
 const resultsContainerEl = document.querySelector("#results-container");
 const gameHistoryEl = document.querySelector("#game-history");
 
-const reachScoreHeaderEl = document.querySelector("#reach-score-header");
 const paperButtonEl = document.querySelector("#paper-button");
 const rockButtonEl = document.querySelector("#rock-button");
 const scissorsButtonEl = document.querySelector("#scissors-button");
@@ -23,8 +25,6 @@ const newGameButtonEl = document.querySelector("#new-game-button");
 [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button, index) => {
   button.addEventListener("click", () => playRound(choices[index]));
 });
-
-newGameButtonEl.addEventListener("click", () => initializeGame());
 
 function initializeGame() {
   gameHistory = [];
@@ -35,13 +35,16 @@ function initializeGame() {
   updateScore("computer-score", computerScore);
   updateGameHistory();
   enableButtons();
-  newGameButtonEl.classList.toggle("display-none");
-  reachScoreHeaderEl.classList.toggle("display-none");
-  roundNumberEl.textContent = "Round 1";
-  resultsTextEl.textContent = "A new game has started! Make your choice!";
+  bannerContainerEl.classList.remove("banner-container");
+  bannerContainerEl.classList.add("banner-container-mediaq");
+  gameContainerEl.classList.remove("display-none");
+  newGameButtonEl.classList.toggle("hidden");
+  resultsTextEl.textContent = "A new game has started!\nReach a score of 5 to win!\nMake your choice!";
 }
 
-initializeGame();
+newGameButtonEl.addEventListener("click", () => initializeGame());
+
+// initializeGame();
 
 function updateGameHistory() {
   gameHistoryListEl.innerHTML = "";
@@ -69,20 +72,17 @@ function playRound(playerSelection) {
 
 function finishGame() {
   if (humanScore === MAX_SCORE) {
-    resultsTextEl.textContent = `🎉 CONGRATS, YOU WON THIS GAME! 🏆 Well played! `;
+    resultsTextEl.textContent = `🎉 CONGRATS,\nYOU WON THIS GAME! 🏆\n Well played! `;
   } else if (computerScore === MAX_SCORE) {
-    resultsTextEl.textContent = `🤖 SORRY, COMPUTER WON THIS GAME! 🤖 Better luck next time, human.`;
+    resultsTextEl.textContent = `🤖 SORRY,\nCOMPUTER WON THIS GAME! 🤖\nBetter luck next time, human.`;
   }
   disableButtons();
-  newGameButtonEl.classList.toggle("display-none");
-  reachScoreHeaderEl.classList.toggle("display-none");
+  newGameButtonEl.classList.toggle("hidden");
   gameHistoryEl.classList.toggle("display-none");
-
 }
 
 function checkRoundWinner(humanChoice, computerChoice) {
   roundNumber++;
-  roundNumberEl.textContent = `Round ${roundNumber}`;
   let roundWinner;
   if (humanChoice === computerChoice) {
     roundWinner = "No one";
@@ -103,7 +103,7 @@ function checkRoundWinner(humanChoice, computerChoice) {
     finishGame();
     return;
   }
-  let roundResult = `${roundWinner} wins round ${roundNumber}!`;
+  let roundResult = `Round ${roundNumber}: Human played ${choices[humanChoice]}\nComputer played ${choices[computerChoice]}\n${roundWinner} wins round ${roundNumber}!`;
   resultsTextEl.textContent = `${roundResult}`;
   gameHistory.push(
     `Round ${roundNumber}: Human played ${choices[humanChoice]} - Computer played ${choices[computerChoice]}`
