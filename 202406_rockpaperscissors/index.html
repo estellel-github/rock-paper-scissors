@@ -15,7 +15,8 @@
 
     <div id="banner-container">
       <div id="start-container">
-        <img src="images/image.png" alt="Picture of hands playing rock paper scissors game">
+        <img src="images/image.png" alt="Picture of hands playing rock paper scissors game" id="banner-img"
+          class="img-start">
       </div>
     </div>
     <div id="new-game-container">
@@ -24,30 +25,33 @@
     <div id="game-container" class="display-none">
       <div id="game-container-flex">
 
-      <div id="results-container" class="display-none">
-        <div id="round-number"></div>
-        <div id="results-text"></div>
-        <div id="choice-buttons">
-          <button id="rock-button" class="choice-button">🪨 Rock</button>
-          <button id="paper-button" class="choice-button">📄 Paper</button>
-          <button id="scissors-button" class="choice-button">✂️ Scissors</button>
-        </div>
-        <div id="scores">
-          <div id="human-score-container">
-            <div id="human-score-header">Human Score</div>
-            <div id="human-score"></div>
+        <div id="results-container" class="display-none">
+          <div id="round-number"></div>
+          <div id="results-text"></div>
+          <div id="choice-buttons-wrapper">
+            <div id="choice-buttons">
+              <button id="rock-button">🪨<br>Rock</button>
+              <button id="paper-button">📄<br>Paper</button>
+              <button id="scissors-button">✂️<br>Scissors</button>
+            </div>
           </div>
-          <div id="computer-score-container">
-            <div id="computer-score-header">Computer Score</div>
-            <div id="computer-score"></div>
+          <div id="next-round-wrapper" class="display-none">
+            <div id="next-round-flex">
+              <button id="next-round-button">Next Round</button>
+            </div>
           </div>
-        </div>
-
-        <div id="game-history" class="display-none">
-          <ol id="game-history-list"></ol>
+          <div id="scores">
+            <div id="human-score-container">
+              <div id="human-score-header">Human Score</div>
+              <div id="human-score"></div>
+            </div>
+            <div id="computer-score-container">
+              <div id="computer-score-header">Computer Score</div>
+              <div id="computer-score"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
 
   </div>
