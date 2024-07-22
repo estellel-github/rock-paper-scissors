@@ -67,6 +67,14 @@ h2 {
   text-align: center;
 }
 
+#choice-buttons-wrapper {
+  min-height: 100px;
+}
+
+#next-round-wrapper {
+  min-height: 100px;
+}
+
 #choice-buttons {
   display: flex;
   justify-content: space-between;
@@ -276,7 +284,7 @@ button:disabled:hover {
   text-align: center;
   font-size: 1.2em;
   color: #333;
-  min-height: 50px;
+  min-height: 100px;
   /* Set a minimum height for the results text */
   background-color: #f9f9f9;
   /* Light background color */
@@ -289,13 +297,12 @@ button:disabled:hover {
   /* Space above the results text */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Subtle shadow for depth */
-  /* white-space: pre; ALLOW FOR LINE BREAKS https://stackoverflow.com/questions/9980416/how-can-i-insert-new-line-carriage-returns-into-an-element-textcontent */
   max-width: 100%;
 }
 
 @media (max-width: 480px) {
   #main-container {
-    height: 100vh;
+    height: 100%;
   }
 
   .img-play {
@@ -315,7 +322,7 @@ button:disabled:hover {
   }
 
   #results-container {
-    /* width: 90%; */
+    height: 100%;
     min-width: 300px;
   }
   
