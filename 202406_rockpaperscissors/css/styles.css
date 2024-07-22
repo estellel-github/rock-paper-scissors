@@ -18,12 +18,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
 #main-container {
+  display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 8px;
   width: 90%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
   max-width: 600px;
   background-color: white;
   padding: 16px;
@@ -31,7 +36,11 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-img {
+.img-start {
+  width: 350px;
+}
+
+.img-play {
   width: 350px;
 }
 
@@ -109,7 +118,7 @@ button:hover {
   justify-content: center;
 }
 
-#new-game-button {
+#new-game-button, #next-round-button {
   background-color: #007BFF;
   color: white;
   padding: 15px;
@@ -134,12 +143,18 @@ button:disabled:hover {
 #results-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   padding: 20px;
   background-color: #f0f8ff;
   border-radius: 10px;
   border: 1px solid #ccc;
   white-space: pre-line;
+}
+
+#next-round-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #round-number {
@@ -166,9 +181,9 @@ button:disabled:hover {
 
 #human-score-header,
 #computer-score-header {
-  font-size: 1em;
+  font-size: 0.7em;
   font-weight: bold;
-  color: #333;
+  color: #666666;
   margin-bottom: 5px;
 }
 
@@ -271,36 +286,13 @@ button:disabled:hover {
   max-width: 100%;
 }
 
-#game-history {
-  height: 150px;
-  max-width: 100%;
-  overflow-y: auto;
-}
-
-#game-history-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#game-history-list li {
-  background: #f9f9f9;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 0.9em;
-  color: #555;
-  border-left: 5px solid #007bff;
-}
-
 @media (max-width: 480px) {
-  img {
-    width: 200px;
+  .img-play {
+    width: 300px;
   }
 
-
   button {
-    font-size: 1em;
+    font-size: 0.9em;
   }
 
   #new-game-button {
@@ -311,7 +303,19 @@ button:disabled:hover {
     font-size: 1.2em;
   }
 
+  #results-container {
+    /* width: 90%; */
+    min-width: 300px;
+  }
+  
   #results-text {
-    font-size: 1em;
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 480px) {
+  #results-container {
+    width: 90%;
+    min-width: 350px;
   }
 }
