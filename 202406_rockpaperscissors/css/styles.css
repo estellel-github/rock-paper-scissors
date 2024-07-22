@@ -320,6 +320,7 @@ button:disabled:hover {
 @media (min-width: 480px) {
   #main-container {
     height: 100vh;
+    min-width: 400px;
   }
 
   #results-container {
