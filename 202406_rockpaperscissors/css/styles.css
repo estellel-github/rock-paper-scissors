@@ -40,10 +40,6 @@ html, body {
   width: 350px;
 }
 
-.img-play {
-  width: 350px;
-}
-
 #start-container {
   display: flex;
   gap: 32px;
@@ -306,7 +302,7 @@ button:disabled:hover {
   }
 
   .img-play {
-    width: 300px;
+    width: 150px;
   }
 
   button {
@@ -341,4 +337,9 @@ button:disabled:hover {
     width: 90%;
     min-width: 350px;
   }
+
+  .img-play {
+    width: 350px;
+  }
+
 }
