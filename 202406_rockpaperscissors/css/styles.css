@@ -299,12 +299,12 @@ button:disabled:hover {
     font-size: 0.9em;
   }
 
-  #new-game-button {
+  #new-game-button, #next-round-button {
     font-size: 1em;
   }
 
   #scores {
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
 
   #results-container {
@@ -313,7 +313,7 @@ button:disabled:hover {
   }
   
   #results-text {
-    font-size: 0.9em;
+    font-size: 1em;
   }
 }
 

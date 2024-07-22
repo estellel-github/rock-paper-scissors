@@ -21,9 +21,13 @@ const scissorsButtonEl = document.querySelector("#scissors-button");
 const newGameButtonEl = document.querySelector("#new-game-button");
 const newGameWrapperEl = document.querySelector("#new-game-wrapper");
 
-const choiceButtonsWrapperEl = document.querySelector("#choice-buttons-wrapper");
+const choiceButtonsWrapperEl = document.querySelector(
+  "#choice-buttons-wrapper"
+);
 const nextRoundWrapperEl = document.querySelector("#next-round-wrapper");
 const nextRoundButtonEl = document.querySelector("#next-round-button");
+const backButtonEl = document.querySelector("#back-button");
+const backButtonWrapperEl = document.querySelector("#back-button-wrapper");
 
 [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button, index) => {
   button.addEventListener("click", () => playRound(choices[index]));
@@ -40,9 +44,16 @@ function initializeGame() {
   bannerImgEl.classList.add("img-play");
   gameContainerEl.classList.remove("display-none");
   newGameWrapperEl.classList.toggle("display-none");
-  resultsTextEl.textContent = "A new game has started!\nReach a score of 5 to win!\nMake your choice!";
+  resultsTextEl.textContent =
+    "A new game has started!\nReach a score of 5 to win!\nMake your choice!";
   resultsContainerEl.classList.remove("display-none");
+  backButtonWrapperEl.classList.toggle("display-none");
 }
+
+backButtonEl.addEventListener("click", () => {
+  backButtonWrapperEl.classList.toggle("display-none");
+  location.reload();
+});
 
 newGameButtonEl.addEventListener("click", () => initializeGame());
 
@@ -107,25 +118,25 @@ function checkRoundWinner(humanChoice, computerChoice) {
 
 function updateScore(elementId, newScore) {
   const element = document.getElementById(elementId);
-  element.classList.add('updating');
+  element.classList.add("updating");
   setTimeout(() => {
     element.textContent = newScore;
-    element.classList.remove('updating');
-    element.classList.add('new');
+    element.classList.remove("updating");
+    element.classList.add("new");
     setTimeout(() => {
-      element.classList.remove('new');
+      element.classList.remove("new");
     }, 500);
   }, 500);
 }
 
 function disableButtons() {
-  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach(button => {
+  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button) => {
     button.disabled = true;
   });
 }
 
 function enableButtons() {
-  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach(button => {
+  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button) => {
     button.disabled = false;
   });
 }
