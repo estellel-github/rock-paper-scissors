@@ -73,6 +73,11 @@ h2 {
   gap: 10px;
 }
 
+.choice-button {
+  color: #353535;
+  font-weight: 600;
+}
+
 button {
   flex: 1;
   padding: 10px;
