@@ -139,6 +139,7 @@ button:hover {
 /* Disable hover effects for disabled buttons */
 button:disabled {
   cursor: not-allowed;
+  opacity: 20%;
 }
 
 button:disabled:hover {
