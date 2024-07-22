@@ -10,7 +10,7 @@
 
 /* General Styles */
 
-body {
+html, body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
   margin: 0;
@@ -18,7 +18,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 }
 
 #main-container {
@@ -287,6 +287,10 @@ button:disabled:hover {
 }
 
 @media (max-width: 480px) {
+  #main-container {
+    height: 100vh;
+  }
+
   .img-play {
     width: 300px;
   }
@@ -314,6 +318,10 @@ button:disabled:hover {
 }
 
 @media (min-width: 480px) {
+  #main-container {
+    height: 100vh;
+  }
+
   #results-container {
     width: 90%;
     min-width: 350px;
