@@ -19,6 +19,7 @@ const paperButtonEl = document.querySelector("#paper-button");
 const rockButtonEl = document.querySelector("#rock-button");
 const scissorsButtonEl = document.querySelector("#scissors-button");
 const newGameButtonEl = document.querySelector("#new-game-button");
+const newGameWrapperEl = document.querySelector("#new-game-wrapper");
 
 const choiceButtonsWrapperEl = document.querySelector("#choice-buttons-wrapper");
 const nextRoundWrapperEl = document.querySelector("#next-round-wrapper");
@@ -38,7 +39,7 @@ function initializeGame() {
   bannerImgEl.classList.remove("img-start");
   bannerImgEl.classList.add("img-play");
   gameContainerEl.classList.remove("display-none");
-  newGameButtonEl.classList.toggle("hidden");
+  newGameWrapperEl.classList.toggle("display-none");
   resultsTextEl.textContent = "A new game has started!\nReach a score of 5 to win!\nMake your choice!";
   resultsContainerEl.classList.remove("display-none");
 }
@@ -66,7 +67,7 @@ function finishGame() {
     resultsTextEl.textContent = `🤖 SORRY,\nCOMPUTER WON THIS GAME! 🤖\nBetter luck next time, human.`;
   }
   disableButtons();
-  newGameButtonEl.classList.toggle("hidden");
+  newGameWrapperEl.classList.toggle("display-none");
 }
 
 nextRoundButtonEl.addEventListener("click", () => {
