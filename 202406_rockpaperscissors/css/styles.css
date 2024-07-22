@@ -302,7 +302,7 @@ button:disabled:hover {
   }
 
   .img-play {
-    width: 150px;
+    display: none;
   }
 
   button {
