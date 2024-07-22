@@ -31,6 +31,10 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+img {
+  width: 350px;
+}
+
 #start-container {
   display: flex;
   gap: 32px;
@@ -195,7 +199,7 @@ button:disabled:hover {
 #computer-score {
   font-size: 2em;
   color: white;
-  background-color: #75b2f7;
+  background-color: #9ccafd;
   padding: 10px 20px;
   border-radius: 10px;
   width: 60px;
@@ -290,6 +294,10 @@ button:disabled:hover {
 }
 
 @media (max-width: 480px) {
+  img {
+    width: 200px;
+  }
+
 
   button {
     font-size: 1em;
