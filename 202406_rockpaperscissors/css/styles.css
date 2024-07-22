@@ -1,3 +1,13 @@
+/* Hide while keeping space */
+.hidden {
+  visibility: hidden;
+}
+
+/* Hide and remove the space */
+.display-none {
+  display: none;
+}
+
 /* General Styles */
 
 body {
@@ -6,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -20,23 +31,21 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#main-container > * + * {
-  margin-top: 20px;  /* Apply margin between children */
-}
-
-#banner {
+#start-container {
   display: flex;
+  gap: 32px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: #333;
 }
 
-#game-container {
+#game-container-flex {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 h2 {
@@ -90,15 +99,6 @@ button:hover {
   background-color: #87CEEB; /* Slightly darker pastel blue for hover effect */
 }
 
-/* Hide new game button while keeping its space */
-.hidden {
-  visibility: hidden;
-}
-
-.display-none {
-  display: none;
-}
-
 #new-game-container {
   display: flex;
   align-items: center;
@@ -135,6 +135,7 @@ button:disabled:hover {
   background-color: #f0f8ff;
   border-radius: 10px;
   border: 1px solid #ccc;
+  white-space: pre-line;
 }
 
 #round-number {
@@ -157,7 +158,6 @@ button:disabled:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
 #human-score-header,
@@ -195,7 +195,7 @@ button:disabled:hover {
 #computer-score {
   font-size: 2em;
   color: white;
-  background-color: #007BFF;
+  background-color: #75b2f7;
   padding: 10px 20px;
   border-radius: 10px;
   width: 60px;
@@ -260,7 +260,6 @@ button:disabled:hover {
   /* Border to separate it */
   border-radius: 5px;
   /* Rounded corners */
-  margin-top: 20px;
   /* Space above the results text */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Subtle shadow for depth */
@@ -291,6 +290,7 @@ button:disabled:hover {
 }
 
 @media (max-width: 480px) {
+
   button {
     font-size: 1em;
   }
