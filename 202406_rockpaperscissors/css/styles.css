@@ -76,7 +76,7 @@ h2 {
   min-height: 75px;
 }
 
-#choice-flex {
+#choice-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -174,7 +174,7 @@ button:disabled:hover {
   white-space: pre-wrap;
 }
 
-#next-round-flex {
+#next-round-container {
   display: flex;
   align-items: center;
   justify-content: center;
