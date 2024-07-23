@@ -1,11 +1,5 @@
-/* (Hide while keeping space) */
-.hidden {
-  visibility: hidden;
-}
-
-/* (Hide and remove the space) */
 .display-none {
-  display: none !important; /* REVIEW! Added important to override flex, but should use different classes and review whole JS logic!*/
+  display: none;
 }
 
 html, body {
@@ -326,6 +320,10 @@ button:disabled:hover {
   width: 100%;
   align-items: center;
   justify-content: space-around;
+}
+
+.footer-hidden {
+  visibility: hidden;
 }
 
 @media (max-width: 480px) {

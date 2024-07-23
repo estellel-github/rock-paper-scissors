@@ -47,7 +47,7 @@ function initializeGame() {
     "A new game has started!\nReach a score of 5 to win!\nMake your choice!";
   resultsContainerEl.classList.replace("results-container-removed", "results-container");
   backButtonWrapperEl.classList.remove("display-none");
-  footerEl.classList.add("display-none");
+  footerEl.classList.replace("footer", "footer-hidden");
 }
 
 backButtonEl.addEventListener("click", () => {
