@@ -1,16 +1,20 @@
+/* GENERAL */
+
 .display-none {
   display: none;
 }
 
-html, body {
+html,
+body {
   font-family: "Arial", sans-serif;
   background-color: #f4f4f4;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* IMPORTANT 100%, not 100vh, see https://www.reddit.com/r/Frontend/comments/d1czwl/fix_for_100vh_with_mobile_address_bar_visible/ */
+  /* IMPORTANT! 100%, not 100vh, see https://www.reddit.com/r/Frontend/comments/d1czwl/fix_for_100vh_with_mobile_address_bar_visible/ */
   height: 100%;
 }
 
@@ -29,17 +33,31 @@ html, body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.img-start {
-  width: 350px;
-}
+/* START BANNER */
 
-.start-container {
+.banner-image-wrapper {
   display: flex;
   gap: 32px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.img-start {
+  width: 350px;
+}
+
+.new-game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-game-container-removed {
+  display: none;
+}
+
+/* GAME CONTAINER */
 
 .game-container {
   display: flex;
@@ -50,6 +68,61 @@ html, body {
 
 .game-container-removed {
   display: none;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  /* Prevent resizing when divs change within the container */
+  max-height: 310px;
+  gap: 16px;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  /* Make line breaks (/n) display in results texts, https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
+  white-space: pre-wrap;
+}
+
+.results-container-removed {
+  display: none;
+}
+
+.scores-container {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.score-subcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-header {
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #666666;
+  margin-bottom: 5px;
+}
+
+.results-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+  min-height: 100px;
+  /* Set a minimum height for the results text to avoid unexpected resizing (2 lines to 3 lines) */
+  background-color: #f9f9f9;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
 }
 
 .choice-container {
@@ -63,9 +136,15 @@ html, body {
   display: none;
 }
 
+.choices {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .next-round-container {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
   min-height: 75px;
 }
@@ -74,15 +153,7 @@ html, body {
   display: none;
 }
 
-.choices {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.choice-button {
-  font-weight: 600;
-}
+/* ALL BUTTONS */
 
 button {
   flex: 1;
@@ -97,6 +168,32 @@ button {
 
 button:hover {
   transform: translateY(-2px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 20%;
+}
+
+button:disabled:hover {
+  background-color: initial;
+  transform: none;
+}
+
+/* SPECIFIC BUTTONS */
+
+.new-game-button,
+.next-round-button {
+  background-color: #897cff;
+  color: white;
+  padding: 12px;
+  max-height: 50px;
+  max-width: 200px;
+  width: 100%;
+}
+
+.choice-button {
+  font-weight: 600;
 }
 
 .rock-button {
@@ -123,88 +220,14 @@ button:hover {
   background-color: #87CEEB;
 }
 
-.new-game-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.new-game-container-removed {
-  display: none;
-}
-
-.new-game-button, .next-round-button {
-  background-color: #897cff;
-  color: white;
-  padding: 12px;
-  max-height: 50px;
-  max-width: 200px;
-  width: 100%;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 20%;
-}
-
-button:disabled:hover {
-  background-color: initial;
-  transform: none;
-}
-
-.results-container {
-  display: flex;
-  flex-direction: column;
-  /* Prevent resizing when divs change within the container */
-  max-height: 310px;
-  gap: 16px;
-  padding: 20px;
-  background-color: #f0f8ff;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  /* Make line breaks (/n) display in results texts, https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
-  white-space: pre-wrap;
-}
-
-.results-container-removed {
-  display: none;
-}
-
-.next-round-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.next-round-container-removed {
-  display: none;
-}
-
-.scores-container {
-  display: flex;
-  justify-content: space-around;
-  font-size: 1.5em;
-  text-align: center;
-}
-
-.score-subcontainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.score-header {
-  font-size: 0.7em;
-  font-weight: bold;
-  color: #666666;
-  margin-bottom: 5px;
-}
+/* ANIMATED SCORES */
 
 @keyframes fade-out {
   from {
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(-20px);
@@ -216,6 +239,7 @@ button:disabled:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -273,21 +297,7 @@ button:disabled:hover {
   animation: fade-in 0.5s forwards;
 }
 
-.results-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  font-size: 1.2em;
-  color: #333;
-  min-height: 100px; /* Set a minimum height for the results text to avoid unexpected resizing (2 lines to 3 lines) */
-  background-color: #f9f9f9;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-}
+/* FOOTER */
 
 .footer {
   color: #585858;
@@ -303,44 +313,45 @@ button:disabled:hover {
   visibility: hidden;
 }
 
-@media (max-width: 480px) {
+/* MEDIA QUERIES */
 
+@media (max-width: 480px) {
   .img-play {
     width: 200px;
+  }
+
+  .results-container {
+    min-width: 300px;
   }
 
   button {
     font-size: 0.9em;
   }
 
-  #new-game-button, #next-round-button {
+  .new-game-button,
+  .next-round-button {
     font-size: 1em;
   }
 
-  #scores-container {
+  .scores-container {
     font-size: 1.3em;
   }
 
-  #results-container {
-    min-width: 300px;
-  }
-  
-  #results-text {
+  .results-text {
     font-size: 1em;
   }
 }
 
 @media (min-width: 480px) {
-  #main-container {
-    min-width: 400px;
-  }
-
-  #results-container {
-    min-width: 350px;
-  }
-
   .img-play {
     width: 350px;
   }
 
+  .main-container {
+    min-width: 400px;
+  }
+
+  .results-container {
+    min-width: 350px;
+  }
 }
