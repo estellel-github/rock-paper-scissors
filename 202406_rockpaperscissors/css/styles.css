@@ -10,7 +10,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Was 100vh but issues on mobile, edited to 100% , see e.g. https://www.reddit.com/r/Frontend/comments/d1czwl/fix_for_100vh_with_mobile_address_bar_visible/ */
+  /* IMPORTANT 100%, not 100vh, see https://www.reddit.com/r/Frontend/comments/d1czwl/fix_for_100vh_with_mobile_address_bar_visible/ */
   height: 100%;
 }
 
@@ -39,8 +39,6 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  color: #333;
 }
 
 .game-container {
@@ -54,18 +52,11 @@ html, body {
   display: none;
 }
 
-h2 {
-  margin: 0;
-  color: #555555;
-  text-align: center;
-}
-
 .choice-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 75px;
-  height: 100%;
 }
 
 .choice-container-removed {
@@ -90,7 +81,6 @@ h2 {
 }
 
 .choice-button {
-  color: #353535;
   font-weight: 600;
 }
 
@@ -146,13 +136,10 @@ button:hover {
 .new-game-button, .next-round-button {
   background-color: #897cff;
   color: white;
-  padding: 15px;
+  padding: 12px;
+  max-height: 50px;
   max-width: 200px;
-  width: 100%; /* (Ensure the button maintains its size proportion) */
-}
-
-.new-game-button:hover {
-  background-color: #897cff;
+  width: 100%;
 }
 
 button:disabled {
@@ -168,7 +155,8 @@ button:disabled:hover {
 .results-container {
   display: flex;
   flex-direction: column;
-  max-height: 310px; /* Prevent resizing when divs change within the container */
+  /* Prevent resizing when divs change within the container */
+  max-height: 310px;
   gap: 16px;
   padding: 20px;
   background-color: #f0f8ff;
@@ -192,37 +180,26 @@ button:disabled:hover {
   display: none;
 }
 
-.round-number {
-  text-align: center;
-  color: rgb(83, 83, 83);
-}
-
-.score-container {
+.scores-container {
   display: flex;
   justify-content: space-around;
   font-size: 1.5em;
-}
-
-.score-container div {
   text-align: center;
 }
 
-.human-score-container,
-.computer-score-container {
+.score-subcontainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.human-score-header,
-.computer-score-header {
+.score-header {
   font-size: 0.7em;
   font-weight: bold;
   color: #666666;
   margin-bottom: 5px;
 }
 
-/* Add animation keyframes */
 @keyframes fade-out {
   from {
     opacity: 1;
@@ -327,9 +304,6 @@ button:disabled:hover {
 }
 
 @media (max-width: 480px) {
-  #main-container {
-    height: 100%;
-  }
 
   .img-play {
     width: 200px;
@@ -343,7 +317,7 @@ button:disabled:hover {
     font-size: 1em;
   }
 
-  #score-container {
+  #scores-container {
     font-size: 1.3em;
   }
 
@@ -358,7 +332,6 @@ button:disabled:hover {
 
 @media (min-width: 480px) {
   #main-container {
-    height: 100%;
     min-width: 400px;
   }
 
