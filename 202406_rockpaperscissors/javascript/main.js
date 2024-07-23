@@ -10,7 +10,7 @@ const humanScoreEl = document.querySelector("#human-score");
 const computerScoreEl = document.querySelector("#computer-score");
 const resultsTextEl = document.querySelector("#results-text");
 
-const bannerImgEl = document.querySelector("#banner-img");
+const bannerImgEl = document.querySelector("#banner-image");
 const bannerContainerEl = document.querySelector("#banner-container");
 const gameWrapperEl = document.querySelector("#game-wrapper");
 const resultsContainerEl = document.querySelector("#results-container");
@@ -21,9 +21,7 @@ const scissorsButtonEl = document.querySelector("#scissors-button");
 const newGameButtonEl = document.querySelector("#new-game-button");
 const newGameWrapperEl = document.querySelector("#new-game-wrapper");
 
-const choiceButtonsWrapperEl = document.querySelector(
-  "#choice-buttons-wrapper"
-);
+const choiceWrapperEl = document.querySelector("#choice-wrapper");
 const nextRoundWrapperEl = document.querySelector("#next-round-wrapper");
 const nextRoundButtonEl = document.querySelector("#next-round-button");
 const backButtonEl = document.querySelector("#back-button");
@@ -85,7 +83,7 @@ function finishGame() {
 }
 
 nextRoundButtonEl.addEventListener("click", () => {
-  choiceButtonsWrapperEl.classList.toggle("display-none");
+  choiceWrapperEl.classList.toggle("display-none");
   nextRoundWrapperEl.classList.toggle("display-none");
   resultsTextEl.textContent = `Round ${roundNumber + 1}\nMake your choice!`;
 });
@@ -115,7 +113,7 @@ function checkRoundWinner(humanChoice, computerChoice) {
   }
   let roundResult = `😊 Human played ${choices[humanChoice]}\n🤖 Computer played ${choices[computerChoice]}\n${roundWinner} wins round ${roundNumber}!`;
   resultsTextEl.textContent = `${roundResult}`;
-  choiceButtonsWrapperEl.classList.toggle("display-none");
+  choiceWrapperEl.classList.toggle("display-none");
   nextRoundWrapperEl.classList.toggle("display-none");
 }
 

@@ -62,7 +62,7 @@ h2 {
   text-align: center;
 }
 
-#choice-buttons-wrapper {
+#choice-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,14 +76,14 @@ h2 {
   min-height: 75px;
 }
 
-#choice-buttons-flex {
+#choice-flex {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
 }
 
-#choice-buttons {
+#choices {
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -185,13 +185,13 @@ button:disabled:hover {
   color: rgb(83, 83, 83);
 }
 
-#scores {
+#score-container {
   display: flex;
   justify-content: space-around;
   font-size: 1.5em;
 }
 
-#scores div {
+#score-container div {
   text-align: center;
 }
 
@@ -327,7 +327,7 @@ button:disabled:hover {
     font-size: 1em;
   }
 
-  #scores {
+  #score-container {
     font-size: 1.3em;
   }
 
