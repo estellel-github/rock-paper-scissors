@@ -20,7 +20,7 @@ html, body {
   height: 100%;
 }
 
-#main-container {
+.main-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -39,7 +39,7 @@ html, body {
   width: 350px;
 }
 
-#start-container {
+.start-container {
   display: flex;
   gap: 32px;
   flex-direction: column;
@@ -49,11 +49,15 @@ html, body {
   color: #333;
 }
 
-#game-container {
+.game-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
+}
+
+.game-container-removed {
+  display: none;
 }
 
 h2 {
@@ -62,28 +66,30 @@ h2 {
   text-align: center;
 }
 
-#choice-wrapper {
+.choice-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 75px;
-}
-
-#next-round-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 75px;
-}
-
-#choice-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   height: 100%;
 }
 
-#choices {
+.choice-container-removed {
+  display: none;
+}
+
+.next-round-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75px;
+}
+
+.next-round-container-removed {
+  display: none;
+}
+
+.choices {
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -109,37 +115,41 @@ button:hover {
   transform: translateY(-2px);
 }
 
-#rock-button {
+.rock-button {
   background-color: #FFB6C1;
 }
 
-#rock-button:hover {
+.rock-button:hover {
   background-color: #FF9999;
 }
 
-#paper-button {
+.paper-button {
   background-color: #FFDAB9;
 }
 
-#paper-button:hover {
+.paper-button:hover {
   background-color: #FFCBA4;
 }
 
-#scissors-button {
+.scissors-button {
   background-color: #ADD8E6;
 }
 
-#scissors-button:hover {
+.scissors-button:hover {
   background-color: #87CEEB;
 }
 
-#new-game-container {
+.new-game-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#new-game-button, #next-round-button {
+.new-game-container-removed {
+  display: none;
+}
+
+.new-game-button, .next-round-button {
   background-color: #897cff;
   color: white;
   padding: 15px;
@@ -147,7 +157,7 @@ button:hover {
   width: 100%; /* (Ensure the button maintains its size proportion) */
 }
 
-#new-game-button:hover {
+.new-game-button:hover {
   background-color: #897cff;
 }
 
@@ -161,7 +171,7 @@ button:disabled:hover {
   transform: none;
 }
 
-#results-container {
+.results-container {
   display: flex;
   flex-direction: column;
   max-height: 310px; /* Prevent resizing when divs change within the container */
@@ -174,36 +184,44 @@ button:disabled:hover {
   white-space: pre-wrap;
 }
 
-#next-round-container {
+.results-container-removed {
+  display: none;
+}
+
+.next-round-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#round-number {
+.next-round-container-removed {
+  display: none;
+}
+
+.round-number {
   text-align: center;
   color: rgb(83, 83, 83);
 }
 
-#score-container {
+.score-container {
   display: flex;
   justify-content: space-around;
   font-size: 1.5em;
 }
 
-#score-container div {
+.score-container div {
   text-align: center;
 }
 
-#human-score-container,
-#computer-score-container {
+.human-score-container,
+.computer-score-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#human-score-header,
-#computer-score-header {
+.human-score-header,
+.computer-score-header {
   font-size: 0.7em;
   font-weight: bold;
   color: #666666;
@@ -233,8 +251,8 @@ button:disabled:hover {
   }
 }
 
-#human-score,
-#computer-score {
+.human-score,
+.computer-score {
   font-size: 2em;
   color: white;
   background-color: #c5bcf5;
@@ -250,10 +268,10 @@ button:disabled:hover {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-#human-score::before,
-#computer-score::before,
-#human-score::after,
-#computer-score::after {
+.human-score::before,
+.computer-score::before,
+.human-score::after,
+.computer-score::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -262,29 +280,29 @@ button:disabled:hover {
   left: 0;
 }
 
-#human-score::before,
-#computer-score::before {
+.human-score::before,
+.computer-score::before {
   top: -10px;
   border-bottom: 2px solid white;
 }
 
-#human-score::after,
-#computer-score::after {
+.human-score::after,
+.computer-score::after {
   bottom: -10px;
   border-top: 2px solid white;
 }
 
-#human-score.updating,
-#computer-score.updating {
+.human-score.updating,
+.computer-score.updating {
   animation: fade-out 0.5s forwards;
 }
 
-#human-score.new,
-#computer-score.new {
+.human-score.new,
+.computer-score.new {
   animation: fade-in 0.5s forwards;
 }
 
-#results-text {
+.results-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -300,7 +318,7 @@ button:disabled:hover {
   max-width: 100%;
 }
 
-#footer {
+.footer {
   color: #585858;
   font-size: 0.9em;
   display: flex;

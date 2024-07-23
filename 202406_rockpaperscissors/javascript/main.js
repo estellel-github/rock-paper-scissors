@@ -12,17 +12,17 @@ const resultsTextEl = document.querySelector("#results-text");
 
 const bannerImgEl = document.querySelector("#banner-image");
 const bannerContainerEl = document.querySelector("#banner-container");
-const gameWrapperEl = document.querySelector("#game-wrapper");
+const gameContainerEl = document.querySelector("#game-container");
 const resultsContainerEl = document.querySelector("#results-container");
 
 const paperButtonEl = document.querySelector("#paper-button");
 const rockButtonEl = document.querySelector("#rock-button");
 const scissorsButtonEl = document.querySelector("#scissors-button");
 const newGameButtonEl = document.querySelector("#new-game-button");
-const newGameWrapperEl = document.querySelector("#new-game-wrapper");
+const newGameContainerEl = document.querySelector("#new-game-container");
 
-const choiceWrapperEl = document.querySelector("#choice-wrapper");
-const nextRoundWrapperEl = document.querySelector("#next-round-wrapper");
+const choiceContainerEl = document.querySelector("#choice-container");
+const nextRoundContainerEl = document.querySelector("#next-round-container");
 const nextRoundButtonEl = document.querySelector("#next-round-button");
 const backButtonEl = document.querySelector("#back-button");
 const backButtonWrapperEl = document.querySelector("#back-button-wrapper");
@@ -40,13 +40,12 @@ function initializeGame() {
   updateScore("human-score", humanScore);
   updateScore("computer-score", computerScore);
   enableButtons();
-  bannerImgEl.classList.remove("img-start");
-  bannerImgEl.classList.add("img-play");
-  gameWrapperEl.classList.remove("display-none");
-  newGameWrapperEl.classList.toggle("display-none");
+  bannerImgEl.classList.replace("img-start", "img-play");
+  gameContainerEl.classList.replace("game-container-removed", "game-container");
+  newGameContainerEl.classList.replace("new-game-container", "new-game-container-removed");
   resultsTextEl.textContent =
     "A new game has started!\nReach a score of 5 to win!\nMake your choice!";
-  resultsContainerEl.classList.remove("display-none");
+  resultsContainerEl.classList.replace("results-container-removed", "results-container");
   backButtonWrapperEl.classList.remove("display-none");
   footerEl.classList.add("display-none");
 }
@@ -79,12 +78,12 @@ function finishGame() {
     resultsTextEl.textContent = `🤖 SORRY,\nCOMPUTER WON THIS GAME! 🤖\nBetter luck next time, human.`;
   }
   disableButtons();
-  newGameWrapperEl.classList.toggle("display-none");
+  newGameContainerEl.classList.replace("new-game-container-removed", "new-game-container");
 }
 
 nextRoundButtonEl.addEventListener("click", () => {
-  choiceWrapperEl.classList.toggle("display-none");
-  nextRoundWrapperEl.classList.toggle("display-none");
+  choiceContainerEl.classList.replace("choice-container-removed", "choice-container");
+  nextRoundContainerEl.classList.replace("next-round-container", "next-round-container-removed");
   resultsTextEl.textContent = `Round ${roundNumber + 1}\nMake your choice!`;
 });
 
@@ -113,8 +112,8 @@ function checkRoundWinner(humanChoice, computerChoice) {
   }
   let roundResult = `😊 Human played ${choices[humanChoice]}\n🤖 Computer played ${choices[computerChoice]}\n${roundWinner} wins round ${roundNumber}!`;
   resultsTextEl.textContent = `${roundResult}`;
-  choiceWrapperEl.classList.toggle("display-none");
-  nextRoundWrapperEl.classList.toggle("display-none");
+  choiceContainerEl.classList.replace("choice-container", "choice-container-removed");
+  nextRoundContainerEl.classList.replace("next-round-container-removed", "next-round-container");
 }
 
 function updateScore(elementId, newScore) {
