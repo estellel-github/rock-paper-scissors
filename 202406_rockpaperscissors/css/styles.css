@@ -1,23 +1,22 @@
-/* Hide while keeping space */
+/* (Hide while keeping space) */
 .hidden {
   visibility: hidden;
 }
 
-/* Hide and remove the space */
+/* (Hide and remove the space) */
 .display-none {
-  display: none;
+  display: none !important; /* REVIEW! Added important to override flex, but should use different classes and review whole JS logic!*/
 }
 
-/* General Styles */
-
 html, body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Was 100vh but issues on mobile, edited to 100% , see e.g. https://www.reddit.com/r/Frontend/comments/d1czwl/fix_for_100vh_with_mobile_address_bar_visible/ */
   height: 100%;
 }
 
@@ -26,7 +25,7 @@ html, body {
   flex-direction: column;
   gap: 8px;
   width: 90%;
-  height: 100vh;
+  height: 100%;
   align-items: center;
   justify-content: center;
   max-width: 600px;
@@ -50,7 +49,7 @@ html, body {
   color: #333;
 }
 
-#game-container-flex {
+#game-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,16 +58,29 @@ html, body {
 
 h2 {
   margin: 0;
-  color: #555;
+  color: #555555;
   text-align: center;
 }
 
 #choice-buttons-wrapper {
-  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75px;
 }
 
 #next-round-wrapper {
-  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 75px;
+}
+
+#choice-buttons-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 #choice-buttons {
@@ -97,29 +109,28 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Specific button colors */
 #rock-button {
-  background-color: #FFB6C1; /* Pastel Pink */
+  background-color: #FFB6C1;
 }
 
 #rock-button:hover {
-  background-color: #FF9999; /* Slightly darker pastel pink for hover effect */
+  background-color: #FF9999;
 }
 
 #paper-button {
-  background-color: #FFDAB9; /* Pastel Orange */
+  background-color: #FFDAB9;
 }
 
 #paper-button:hover {
-  background-color: #FFCBA4; /* Slightly darker pastel orange for hover effect */
+  background-color: #FFCBA4;
 }
 
 #scissors-button {
-  background-color: #ADD8E6; /* Pastel Blue */
+  background-color: #ADD8E6;
 }
 
 #scissors-button:hover {
-  background-color: #87CEEB; /* Slightly darker pastel blue for hover effect */
+  background-color: #87CEEB;
 }
 
 #new-game-container {
@@ -132,15 +143,14 @@ button:hover {
   background-color: #897cff;
   color: white;
   padding: 15px;
-  max-width: 200px; /* Adjust the max-width as needed */
-  width: 100%; /* Ensure the button maintains its size proportion */
+  max-width: 200px;
+  width: 100%; /* (Ensure the button maintains its size proportion) */
 }
 
 #new-game-button:hover {
   background-color: #897cff;
 }
 
-/* Disable hover effects for disabled buttons */
 button:disabled {
   cursor: not-allowed;
   opacity: 20%;
@@ -154,12 +164,14 @@ button:disabled:hover {
 #results-container {
   display: flex;
   flex-direction: column;
+  max-height: 310px; /* Prevent resizing when divs change within the container */
   gap: 16px;
   padding: 20px;
   background-color: #f0f8ff;
   border-radius: 10px;
   border: 1px solid #ccc;
-  white-space: pre-line;
+  /* Make line breaks (/n) display in results texts, https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
+  white-space: pre-wrap;
 }
 
 #next-round-flex {
@@ -234,7 +246,6 @@ button:disabled:hover {
   overflow: hidden;
   line-height: 1em;
   height: 1em;
-  /* Ensures vertical centering */
   opacity: 1;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
@@ -243,7 +254,7 @@ button:disabled:hover {
 #computer-score::before,
 #human-score::after,
 #computer-score::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 10px;
@@ -280,20 +291,23 @@ button:disabled:hover {
   text-align: center;
   font-size: 1.2em;
   color: #333;
-  min-height: 100px;
-  /* Set a minimum height for the results text */
+  min-height: 100px; /* Set a minimum height for the results text to avoid unexpected resizing (2 lines to 3 lines) */
   background-color: #f9f9f9;
-  /* Light background color */
-  padding: 10px;
-  /* Padding around the text */
+  padding: 6px;
   border: 1px solid #ccc;
-  /* Border to separate it */
   border-radius: 5px;
-  /* Rounded corners */
-  /* Space above the results text */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
   max-width: 100%;
+}
+
+#footer {
+  color: #585858;
+  font-size: 0.9em;
+  display: flex;
+  height: 150px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 @media (max-width: 480px) {
@@ -302,7 +316,7 @@ button:disabled:hover {
   }
 
   .img-play {
-    display: none;
+    width: 200px;
   }
 
   button {
@@ -318,7 +332,6 @@ button:disabled:hover {
   }
 
   #results-container {
-    height: 100%;
     min-width: 300px;
   }
   
@@ -329,12 +342,11 @@ button:disabled:hover {
 
 @media (min-width: 480px) {
   #main-container {
-    height: 100vh;
+    height: 100%;
     min-width: 400px;
   }
 
   #results-container {
-    width: 90%;
     min-width: 350px;
   }
 
