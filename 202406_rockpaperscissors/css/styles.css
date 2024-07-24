@@ -309,8 +309,8 @@ button:disabled:hover {
   justify-content: space-around;
 }
 
-.footer-hidden {
-  visibility: hidden;
+.footer-removed {
+  display:none;
 }
 
 /* MEDIA QUERIES */
