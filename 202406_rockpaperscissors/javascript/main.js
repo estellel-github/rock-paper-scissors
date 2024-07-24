@@ -29,7 +29,9 @@ const backButtonWrapperEl = document.querySelector("#back-button-wrapper");
 
 const footerEl = document.querySelector("#footer");
 
-[rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button, index) => {
+const buttons = [rockButtonEl, paperButtonEl, scissorsButtonEl];
+
+buttons.forEach((button, index) => {
   button.addEventListener("click", () => playRound(choices[index]));
 });
 
@@ -39,7 +41,7 @@ function initializeGame() {
   computerScore = 0;
   updateScore("human-score", humanScore);
   updateScore("computer-score", computerScore);
-  enableButtons();
+  disableButtons(false);
   bannerImgEl.classList.replace("img-start", "img-play");
   gameContainerEl.classList.replace("game-container-removed", "game-container");
   newGameContainerEl.classList.replace("new-game-container", "new-game-container-removed");
@@ -56,8 +58,6 @@ backButtonEl.addEventListener("click", () => {
 });
 
 newGameButtonEl.addEventListener("click", () => initializeGame());
-
-// initializeGame();
 
 function getComputerChoice() {
   return Math.floor(Math.random() * 3);
@@ -77,7 +77,7 @@ function finishGame() {
   } else if (computerScore === MAX_SCORE) {
     resultsTextEl.textContent = `🤖 SORRY,\nCOMPUTER WON THIS GAME! 🤖\nBetter luck next time, human.`;
   }
-  disableButtons();
+  disableButtons(true);
   newGameContainerEl.classList.replace("new-game-container-removed", "new-game-container");
 }
 
@@ -129,14 +129,8 @@ function updateScore(elementId, newScore) {
   }, 500);
 }
 
-function disableButtons() {
-  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button) => {
-    button.disabled = true;
-  });
-}
-
-function enableButtons() {
-  [rockButtonEl, paperButtonEl, scissorsButtonEl].forEach((button) => {
-    button.disabled = false;
+function disableButtons(position) {
+  buttons.forEach(button => {
+    button.disabled = position;
   });
 }
