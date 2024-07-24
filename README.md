@@ -1,1 +1,1 @@
-# learning-projects
+# rock-paper-scissors
