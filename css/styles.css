@@ -4,17 +4,24 @@
   display: none;
 }
 
-html,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  position: relative;
+  height: 100dvh;
+}
+
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f4f4f4;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  background-color: #f4f4f4; 
   display: flex;
   align-items: center;
   justify-content: center;
-  /* IMPORTANT! 100%, not 100vh, see https://www.reddit.com/r/Frontend/comments/d1czwl/fix_for_100vh_with_mobile_address_bar_visible/ */
   height: 100%;
 }
 
@@ -54,7 +61,7 @@ body {
 }
 
 .new-game-container-removed {
-  display: none;
+  visibility: hidden;
 }
 
 /* GAME CONTAINER */
@@ -303,10 +310,10 @@ button:disabled:hover {
   color: #585858;
   font-size: 0.9em;
   display: flex;
-  height: 150px;
   width: 100%;
+  gap: 24px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .footer-removed {
