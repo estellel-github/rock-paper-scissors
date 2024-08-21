@@ -56,7 +56,7 @@ body {
 }
 
 .img-play {
-  max-width: clamp(200px,75%,350px);
+  max-width: clamp(200px,70%,350px);
 }
 
 .new-game-container {
