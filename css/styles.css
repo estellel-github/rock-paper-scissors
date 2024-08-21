@@ -4,6 +4,7 @@
   display: none;
 }
 
+*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -28,30 +29,34 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 90%;
+  gap: 0.5rem;
+  width: clamp(350px, 100%, 500px);
   height: 100%;
   align-items: center;
   justify-content: center;
   max-width: 600px;
   background-color: white;
-  padding: 16px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 /* START BANNER */
 
 .banner-image-wrapper {
   display: flex;
-  gap: 32px;
+  gap: 2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .img-start {
-  width: 350px;
+  max-width: 350px;
+}
+
+.img-play {
+  max-width: clamp(200px,75%,350px);
 }
 
 .new-game-container {
@@ -69,8 +74,10 @@ body {
 .game-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
+  width: 100%;
+  gap: 1rem;
 }
 
 .game-container-removed {
@@ -80,12 +87,12 @@ body {
 .results-container {
   display: flex;
   flex-direction: column;
+  width: clamp(350px, 100%, 400px);
   /* Prevent resizing when divs change within the container */
-  max-height: 310px;
-  gap: 16px;
-  padding: 20px;
+  gap: 1rem;
+  padding: 1.6rem;
   background-color: #f0f8ff;
-  border-radius: 10px;
+  border-radius: 0.6rem;
   border: 1px solid #ccc;
   /* Make line breaks (/n) display in results texts, https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
   white-space: pre-wrap;
@@ -98,7 +105,7 @@ body {
 .scores-container {
   display: flex;
   justify-content: space-around;
-  font-size: 1.5em;
+  font-size: 1.6rem;
   text-align: center;
 }
 
@@ -109,10 +116,10 @@ body {
 }
 
 .score-header {
-  font-size: 0.7em;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #666666;
-  margin-bottom: 5px;
+  margin-bottom: 0.4rem;
 }
 
 .results-text {
@@ -120,15 +127,15 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-size: 1.2em;
+  font-size: clamp(0.9rem,1.1rem,1.2rem);
   color: #333;
   min-height: 100px;
   /* Set a minimum height for the results text to avoid unexpected resizing (2 lines to 3 lines) */
   background-color: #f9f9f9;
-  padding: 6px;
+  padding: 0.8rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
   max-width: 100%;
 }
 
@@ -146,7 +153,7 @@ body {
 .choices {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 0.4rem;
 }
 
 .next-round-container {
@@ -164,10 +171,10 @@ body {
 
 button {
   flex: 1;
-  padding: 10px;
-  font-size: 1.2em;
+  padding: 0.7rem;
+  font-size: clamp(1rem,1.2rem,1.3rem);
   border: none;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   cursor: pointer;
   color: #575757;
   transition: background-color 0.3s, transform 0.3s;
@@ -191,15 +198,17 @@ button:disabled:hover {
 
 .new-game-button,
 .next-round-button {
+  /* font-size: clamp(1rem, 1.1rem, 1.2rem); */
   background-color: #897cff;
   color: white;
-  padding: 12px;
+  padding: 0.7rem;
   max-height: 50px;
   max-width: 200px;
   width: 100%;
 }
 
 .choice-button {
+  font-size: clamp(1rem,1.1rem,1.2rem);
   font-weight: 600;
 }
 
@@ -237,14 +246,14 @@ button:disabled:hover {
 
   to {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-1.5rem);
   }
 }
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.5rem);
   }
 
   to {
@@ -258,39 +267,26 @@ button:disabled:hover {
   font-size: 2em;
   color: white;
   background-color: #c5bcf5;
-  padding: 10px 20px;
-  border-radius: 10px;
-  width: 60px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.7rem;
+  width: 95px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  line-height: 1em;
-  height: 1em;
+  height: 80px;
   opacity: 1;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .human-score::before,
-.computer-score::before,
-.human-score::after,
-.computer-score::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 10px;
-  background: #0e55a1;
-  left: 0;
-}
-
-.human-score::before,
 .computer-score::before {
-  top: -10px;
+  top: -0.6rem;
   border-bottom: 2px solid white;
 }
 
 .human-score::after,
 .computer-score::after {
-  bottom: -10px;
+  bottom: -0.5rem;
   border-top: 2px solid white;
 }
 
@@ -308,57 +304,15 @@ button:disabled:hover {
 
 .footer {
   color: #585858;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   display: flex;
   width: 100%;
-  gap: 24px;
+  padding: 1rem;
+  gap: 1.5rem;
   align-items: center;
   justify-content: center;
 }
 
 .footer-removed {
   display:none;
-}
-
-/* MEDIA QUERIES */
-
-@media (max-width: 480px) {
-  .img-play {
-    width: 200px;
-  }
-
-  .results-container {
-    min-width: 300px;
-  }
-
-  button {
-    font-size: 0.9em;
-  }
-
-  .new-game-button,
-  .next-round-button {
-    font-size: 1em;
-  }
-
-  .scores-container {
-    font-size: 1.3em;
-  }
-
-  .results-text {
-    font-size: 1em;
-  }
-}
-
-@media (min-width: 480px) {
-  .img-play {
-    width: 350px;
-  }
-
-  .main-container {
-    min-width: 400px;
-  }
-
-  .results-container {
-    min-width: 350px;
-  }
 }
