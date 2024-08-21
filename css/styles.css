@@ -1,5 +1,42 @@
 /* GENERAL */
 
+:root {
+  --color-bg-general: #f4f4f4;
+  --color-bg-main: white;
+  --color-bg-results: #f0f8ff;
+  --color-bg-results-txt: white;
+  --color-bg-scores: #c5bcf5;
+  --color-bg-btn-new-game: #897cff;
+  --color-bg-btn-rock: #FFB6C1;
+  --color-bg-btn-rock-hover: #FF9999;
+  --color-bg-btn-paper: #FFDAB9;
+  --color-bg-btn-paper-hover: #FFCBA4;
+  --color-bg-btn-scissors: #ADD8E6;
+  --color-bg-btn-scissors-hover: #87CEEB;
+  --color-txt-buttons: white;
+  --color-txt-general: #4d4c4c;
+  --color-txt-score: white;
+  --color-border: #ccc;
+  --color-box-shadow: rgba(0, 0, 0, 0.1);
+
+  --font-size-base: 1rem;
+  --font-size-small: 0.9rem;
+  --font-size-medium: 1.2rem;
+  --font-size-large: 1.6rem;
+  --font-size-xlarge: 2em;
+
+  --spacing-small: 0.6rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 1.5rem;
+
+  --border-radius-small: 0.25rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-large: 1rem;
+
+  --box-shadow-small: 0 0.1rem 0.2rem var(--color-box-shadow);
+  --box-shadow-medium: 0 0.25rem 0.5rem var(--color-box-shadow);
+}
+
 .display-none {
   display: none;
 }
@@ -19,7 +56,7 @@ html {
 
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f4f4f4; 
+  background-color: var(--color-bg-general);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,23 +66,23 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-small);
   width: clamp(350px, 100%, 500px);
   height: 100%;
   align-items: center;
   justify-content: center;
   max-width: 600px;
-  background-color: white;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  background-color: var(--color-bg-main);
+  padding: var(--spacing-medium);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--box-shadow-medium);
 }
 
 /* START BANNER */
 
 .banner-image-wrapper {
   display: flex;
-  gap: 2rem;
+  gap: var(--spacing-large);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -53,10 +90,6 @@ body {
 
 .img-start {
   max-width: 350px;
-}
-
-.img-play {
-  max-width: clamp(200px,70%,350px);
 }
 
 .new-game-container {
@@ -71,13 +104,17 @@ body {
 
 /* GAME CONTAINER */
 
+.img-play {
+  max-width: clamp(200px,70%,350px);
+}
+
 .game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  gap: 1rem;
+  gap: var(--spacing-medium);
 }
 
 .game-container-removed {
@@ -88,12 +125,11 @@ body {
   display: flex;
   flex-direction: column;
   width: clamp(350px, 100%, 400px);
-  /* Prevent resizing when divs change within the container */
-  gap: 1rem;
-  padding: 1.6rem;
-  background-color: #f0f8ff;
-  border-radius: 0.6rem;
-  border: 1px solid #ccc;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-large);
+  background-color: var(--color-bg-results);
+  border-radius:var(--border-radius-medium);
+  border: 1px solid var(--color-border);
   /* Make line breaks (/n) display in results texts, https://developer.mozilla.org/en-US/docs/Web/CSS/white-space */
   white-space: pre-wrap;
 }
@@ -105,7 +141,7 @@ body {
 .scores-container {
   display: flex;
   justify-content: space-around;
-  font-size: 1.6rem;
+  font-size: var(--font-size-large);
   text-align: center;
 }
 
@@ -116,10 +152,10 @@ body {
 }
 
 .score-header {
-  font-size: 1.2rem;
+  font-size: var(--font-size-medium);
   font-weight: bold;
-  color: #666666;
-  margin-bottom: 0.4rem;
+  color: var(--color-txt-general);
+  margin-bottom: var(--spacing-small);
 }
 
 .results-text {
@@ -127,15 +163,15 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-size: clamp(0.9rem,1.1rem,1.2rem);
-  color: #333;
-  min-height: 100px;
+  font-size: clamp(var(--font-size-small),var(--font-size-base),var(--font-size-medium));
+  color: var(--color-txt-general);
   /* Set a minimum height for the results text to avoid unexpected resizing (2 lines to 3 lines) */
-  background-color: #f9f9f9;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 0.4rem;
-  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1);
+  min-height: 100px;
+  background-color: var(--color-bg-results-txt);
+  padding: var(--spacing-medium);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--box-shadow-small);
   max-width: 100%;
 }
 
@@ -153,7 +189,7 @@ body {
 .choices {
   display: flex;
   justify-content: space-between;
-  gap: 0.4rem;
+  gap: var(--spacing-medium);
 }
 
 .next-round-container {
@@ -171,12 +207,12 @@ body {
 
 button {
   flex: 1;
-  padding: 0.7rem;
-  font-size: clamp(1rem,1.2rem,1.3rem);
+  padding: var(--spacing-small);
+  font-size: clamp(var(--font-size-base), var(--font-size-medium), var(--font-size-large));
   border: none;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius-medium);
   cursor: pointer;
-  color: #575757;
+  color: var(--color-txt-general);
   transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -198,10 +234,9 @@ button:disabled:hover {
 
 .new-game-button,
 .next-round-button {
-  /* font-size: clamp(1rem, 1.1rem, 1.2rem); */
-  background-color: #897cff;
-  color: white;
-  padding: 0.7rem;
+  background-color: var(--color-bg-btn-new-game);
+  color: var(--color-bg-main);
+  padding: var(--spacing-small);
   max-height: 50px;
   max-width: 200px;
   width: 100%;
@@ -213,27 +248,27 @@ button:disabled:hover {
 }
 
 .rock-button {
-  background-color: #FFB6C1;
+  background-color: var(--color-bg-btn-rock);
 }
 
 .rock-button:hover {
-  background-color: #FF9999;
+  background-color: var(--color-bg-btn-rock-hover);
 }
 
 .paper-button {
-  background-color: #FFDAB9;
+  background-color: var(--color-bg-btn-paper);
 }
 
 .paper-button:hover {
-  background-color: #FFCBA4;
+  background-color: var(--color-bg-btn-paper-hover);
 }
 
 .scissors-button {
-  background-color: #ADD8E6;
+  background-color: var(--color-bg-btn-scissors);
 }
 
 .scissors-button:hover {
-  background-color: #87CEEB;
+  background-color: var(--color-bg-btn-scissors-hover);
 }
 
 /* ANIMATED SCORES */
@@ -264,11 +299,11 @@ button:disabled:hover {
 
 .human-score,
 .computer-score {
-  font-size: 2em;
-  color: white;
-  background-color: #c5bcf5;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.7rem;
+  font-size: var(--font-size-xlarge);
+  color: var(--color-txt-score);
+  background-color: var(--color-bg-scores);
+  padding: var(--spacing-small) var(--spacing-medium);
+  border-radius: var(--border-radius-medium);
   width: 95px;
   text-align: center;
   position: relative;
@@ -303,12 +338,12 @@ button:disabled:hover {
 /* FOOTER */
 
 .footer {
-  color: #585858;
-  font-size: 0.9rem;
+  color: var(--color-txt-general);
+  font-size: var(--font-size-small);
   display: flex;
   width: 100%;
-  padding: 1rem;
-  gap: 1.5rem;
+  padding: var(--spacing-medium);
+  gap: var(--spacing-large);
   align-items: center;
   justify-content: center;
 }
