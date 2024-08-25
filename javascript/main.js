@@ -89,7 +89,6 @@ nextRoundButtonEl.addEventListener("click", () => {
 
 function checkRoundWinner(humanChoice, computerChoice) {
   roundNumber++;
-  resultsTextEl.textContent = `${roundNumber}\nMake your choice!`;
   let roundWinner;
   if (humanChoice === computerChoice) {
     roundWinner = "⚖️ No one";
