@@ -104,8 +104,16 @@ body {
 
 /* GAME CONTAINER */
 
-.img-play {
-  max-width: clamp(200px,70%,350px);
+@media (min-width: 376px) {
+  .img-play {
+      max-width: clamp(200px, 80%, 350px);
+  }
+}
+
+@media (max-width: 375px) {
+  .img-play {
+      display: none;
+  }
 }
 
 .game-container {
