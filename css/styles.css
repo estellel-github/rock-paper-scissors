@@ -112,7 +112,7 @@ body {
 
 @media (max-width: 375px) {
   .img-play {
-    max-width: clamp(75px, 80%, 150px);
+    display: none;
   }
 }
 
