@@ -106,7 +106,7 @@ body {
 
 @media (min-width: 376px) {
   .img-play {
-    max-width: clamp(300px, 90%, 500px);
+    max-width: 250px;
   }
 }
 
